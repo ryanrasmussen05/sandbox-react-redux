@@ -2,11 +2,11 @@ import { ProjectState } from './projectReducer';
 import { combineReducers, Reducer } from 'redux';
 import projectReducer from './projectReducer'
 
-export interface State {
+export interface AppState {
     projectState: ProjectState;
 }
 
-const rootReducer: Reducer<State> = combineReducers({
+const rootReducer: Reducer<AppState> = combineReducers({
     projectState: projectReducer
 });
 
