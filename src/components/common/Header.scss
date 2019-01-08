@@ -1,0 +1,29 @@
+@import '../../styles/variables';
+
+.header {
+  background-color: $menu-bar-color;
+  padding-bottom: 2px;
+
+  .title {
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+  }
+
+  .ant-menu {
+    background-color: $menu-bar-color;
+  }
+
+  .ant-menu-horizontal {
+    border-color: $menu-bar-color;
+  }
+
+  .ant-menu-item {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .ant-menu-item:not(.ant-menu-item-selected) > a {
+    color: white;
+  }
+}
