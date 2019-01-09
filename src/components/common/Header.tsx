@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, Button, Dropdown, Icon } from 'antd';
+import { Menu, Button, Dropdown } from 'antd';
 import { Link } from 'react-router-dom';
 import './Header.scss';
 import {MenuMode} from "antd/lib/menu";
