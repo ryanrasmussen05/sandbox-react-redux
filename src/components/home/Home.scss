@@ -1,0 +1,35 @@
+@import '../../styles/variables';
+
+.home-page {
+  background-color: $home-page-banner-color;
+  color: $home-page-banner-text-color;
+
+  .banner {
+    padding: 50px 0;
+  }
+
+  .github-button {
+    background-color: #767676;
+    color: #FFFFFF;
+    border-color: transparent;
+    margin-left: 15px;
+
+    &:hover {
+      background-color: #9a9a9a;
+    }
+  }
+
+  .name {
+    font-size: 44px;
+    margin-bottom: 20px;
+  }
+
+  .job-title {
+    font-size: 24px;
+  }
+
+  .location {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+}

@@ -1,13 +1,16 @@
 @import '../../styles/variables';
 
 .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: $menu-bar-color;
   padding: 0 10px 2px 10px;
 
   .title {
     font-size: 22px;
     font-weight: 600;
-    color: white;
+    color: $menu-bar-title-color;
   }
 
   .ant-menu {

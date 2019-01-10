@@ -31,7 +31,7 @@ const NavMenu: React.FunctionComponent<NavMenuProps> = (props) => {
 class Header extends React.Component<HeaderProps> {
     render() {
         return (
-            <div className="header flex items-center justify-between">
+            <div className="header">
                 <div className="title">Ryan Rasmussen</div>
 
                 <Dropdown overlay={NavMenu} trigger={['click']} className="nav-dropdown">
