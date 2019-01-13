@@ -1,6 +1,7 @@
 import React from 'react';
 import './Project.scss';
 import {Project} from "../../model/project";
+import {getImage} from "../common/functions";
 
 
 interface ProjectProps {
@@ -30,9 +31,5 @@ const ProjectComponent: React.FunctionComponent<ProjectProps> = (props) => {
         </div>
     )
 };
-
-function getImage(imageName: string) {
-    return require('../../assets/' + imageName);
-}
 
 export default ProjectComponent;

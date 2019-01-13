@@ -1,0 +1,24 @@
+@import '../../styles/variables';
+
+.footer {
+  background-color: $menu-bar-color;
+  color: $menu-bar-title-color;
+  text-align: center;
+
+  .links-wrapper {
+    img {
+      height: 100px;
+      width: auto;
+      margin: 25px;
+
+      @media screen and (max-width: 500px) {
+        height: 50px;
+        margin: 15px;
+      }
+    }
+  }
+
+  .copyright {
+    padding-bottom: 5px;
+  }
+}

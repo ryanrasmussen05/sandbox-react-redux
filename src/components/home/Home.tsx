@@ -12,6 +12,8 @@ import {Link} from "react-router-dom";
 import {getProjects, isFetchingProjects} from "../../reducers/selectors";
 import {Project} from "../../model/project";
 import ProjectComp from "./Project";
+import Footer from "../common/Footer";
+import {getImage} from "../common/functions";
 
 interface HomeProps {
     match: match;
@@ -55,7 +57,7 @@ class Home extends React.Component<HomeProps> {
                     </div>
                 </div>
                 <div className="divider"></div>
-                <img src={this.getImage('rhino_logo-teal.png')} className="rhino-logo" alt="rhino"/>
+                <img src={getImage('rhino_logo-teal.png')} className="rhino-logo" alt="rhino"/>
                 <div className="text-container homepage-section">
                     <div className="section-title">
                         Mobile Development
@@ -81,7 +83,7 @@ class Home extends React.Component<HomeProps> {
 
                 </div>
                 <div className="divider"></div>
-                <div className="text-container homepage-section">
+                <div className="text-container homepage-section sandbox-section">
                     <div className="section-title">
                         Sandbox
                     </div>
@@ -95,16 +97,13 @@ class Home extends React.Component<HomeProps> {
                         </Link>
                     </div>
                 </div>
+                <Footer />
             </div>
         );
     }
 
     componentDidMount(): void {
         this.props.fetchProjects();
-    }
-
-    getImage(imageName: string) {
-        return require('../../assets/' + imageName);
     }
 }
 
