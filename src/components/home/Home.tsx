@@ -1,11 +1,23 @@
 import React from 'react';
 import Header from '../common/Header';
-import { match } from 'react-router';
+import {match} from 'react-router';
 import './Home.scss';
-import {Button} from "antd";
+import {Button, Icon} from "antd";
+import {AppState} from "../../reducers";
+import {fetchProjects} from "../../actions/projectActions";
+import {ThunkDispatch} from "redux-thunk";
+import {AnyAction} from "redux";
+import {connect} from "react-redux";
+import {Link} from "react-router-dom";
+import {getProjects, isFetchingProjects} from "../../reducers/selectors";
+import {Project} from "../../model/project";
+import ProjectComp from "./Project";
 
 interface HomeProps {
-    match: match
+    match: match;
+    fetchProjects: () => void;
+    loading: boolean;
+    projects: Project[];
 }
 
 class Home extends React.Component<HomeProps> {
@@ -26,9 +38,91 @@ class Home extends React.Component<HomeProps> {
                         </a>
                     </div>
                 </div>
+                <div className="text-container homepage-section">
+                    <div className="section-title">
+                        About
+                    </div>
+                    <div>
+                        I'm a full-stack web developer and a mobile developer in my spare time. I built this site
+                        with <b>ReactJS</b>, <b>TypeScript</b>, and <b>Redux</b>, and utilizing <b>Firebase</b> for
+                        hosting and realtime database to help me stay up-to-date with the latest front-end
+                        technologies, and as a sandbox for learning to use various libraries.
+                    </div>
+                    <div className="section-button">
+                        <Link to="/resume">
+                            <Button htmlType="button" type="primary">Resume</Button>
+                        </Link>
+                    </div>
+                </div>
+                <div className="divider"></div>
+                <img src={this.getImage('rhino_logo-teal.png')} className="rhino-logo" alt="rhino"/>
+                <div className="text-container homepage-section">
+                    <div className="section-title">
+                        Mobile Development
+                    </div>
+                    <div>
+                        I publish apps to Google Play under the developer name <b>Rhino Development</b>, and currently
+                        have one app in the Apple App Store written for <b>Strategic Air Command & Aerospace Museum</b>.
+                    </div>
+
+                    {this.props.loading &&
+                        <div className="loading-indicator">
+                            <Icon type="sync" spin/>
+                        </div>
+                    }
+
+                    {this.props.projects &&
+                        this.props.projects.map((project: Project) => (
+                            <div key={project.title} className="project-wrapper">
+                                <ProjectComp project={project}/>
+                            </div>
+                        ))
+                    }
+
+                </div>
+                <div className="divider"></div>
+                <div className="text-container homepage-section">
+                    <div className="section-title">
+                        Sandbox
+                    </div>
+                    <div>
+                        This is the area I use to store various components I create while learning new/interesting
+                        libraries.
+                    </div>
+                    <div className="section-button">
+                        <Link to="/sandbox">
+                            <Button htmlType="button" type="primary">Sandbox</Button>
+                        </Link>
+                    </div>
+                </div>
             </div>
         );
     }
+
+    componentDidMount(): void {
+        this.props.fetchProjects();
+    }
+
+    getImage(imageName: string) {
+        return require('../../assets/' + imageName);
+    }
 }
 
-export default Home;
+function mapStateToProps(state: AppState) {
+    return {
+        loading: isFetchingProjects(state),
+        projects: getProjects(state)
+    };
+}
+
+function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
+    return {
+        fetchProjects: () => {
+            dispatch(fetchProjects())
+        }
+    }
+}
+
+const ConnectedHome = connect(mapStateToProps, mapDispatchToProps)(Home);
+
+export default ConnectedHome;

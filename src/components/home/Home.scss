@@ -1,11 +1,11 @@
 @import '../../styles/variables';
 
 .home-page {
-  background-color: $home-page-banner-color;
-  color: $home-page-banner-text-color;
 
   .banner {
     padding: 50px 0;
+    background-color: $home-page-banner-color;
+    color: $home-page-banner-text-color;
   }
 
   .github-button {
@@ -31,5 +31,36 @@
   .location {
     font-size: 16px;
     margin-bottom: 20px;
+  }
+
+  .homepage-section {
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    .section-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .section-button {
+      margin-top: 15px;
+    }
+  }
+
+  .rhino-logo {
+    max-width: 250px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .loading-indicator {
+    text-align: center;
+    font-size: 35px;
+    margin-top: 25px;
+  }
+
+  .project-wrapper {
+    margin: 40px 0;
   }
 }

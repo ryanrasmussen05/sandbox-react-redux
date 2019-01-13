@@ -1,31 +1,64 @@
-import { Action } from 'redux';
+import {Action, AnyAction, Dispatch} from 'redux';
+import firebase from 'firebase';
+import {ThunkAction} from "redux-thunk";
+import {Project} from "../model/project";
 
-export const GET_PROJECTS = 'GET_PROJECTS';
-export const SET_PROJECTS = 'SET_PROJECTS';
+export const REQUESTING_PROJECTS = 'REQUESTING_PROJECTS';
+export const PROJECTS_RECEIVED = 'PROJECTS_RECEIVED';
+export const PROJECTS_ERROR = 'PROJECTS_ERROR';
 
-export interface ActionGetProjects extends Action {
-    type: 'GET_PROJECTS';
-    lastUpdate: string
+export interface ActionRequestingProjects extends Action {
+    type: 'REQUESTING_PROJECTS';
 }
 
-export interface ActionSetProjects extends Action {
-    type: 'SET_PROJECTS';
-    testProp: string;
+export interface ActionProjectsReceived extends Action {
+    type: 'PROJECTS_RECEIVED';
+    projects: Project[];
 }
 
-export type ProjectActions = ActionGetProjects | ActionSetProjects;
+export interface ActionProjectsError extends Action {
+    type: 'PROJECTS_ERROR';
+    error: string;
+}
 
+export type ProjectActions =
+    ActionRequestingProjects |
+    ActionProjectsReceived |
+    ActionProjectsError;
 
-export function getProjects(lastUpdate: string): ActionGetProjects {
+export function requestingProjects(): ActionRequestingProjects {
     return {
-        type: GET_PROJECTS,
-        lastUpdate: lastUpdate
+        type: REQUESTING_PROJECTS
     }
 }
 
-export function setProjects(testProp: string): ActionSetProjects {
+export function projectsReceived(projects: Project[]): ActionProjectsReceived {
     return {
-        type: SET_PROJECTS,
-        testProp: testProp
+        type: PROJECTS_RECEIVED,
+        projects: projects
     }
 }
+
+export function projectsError(error: string): ActionProjectsError {
+    return {
+        type: PROJECTS_ERROR,
+        error: error
+    }
+}
+
+export function fetchProjects(): ThunkAction<Promise<void>, any, any, AnyAction> {
+    return (dispatch: Dispatch) => {
+        dispatch(requestingProjects());
+
+        return firebase.database().ref('projects').once('value').then(
+            (data: firebase.database.DataSnapshot) => {
+                dispatch(projectsReceived(data.val()));
+            },
+            (error: string) => {
+                console.error(error);
+                dispatch(projectsError(error));
+            }
+        );
+    };
+}
+

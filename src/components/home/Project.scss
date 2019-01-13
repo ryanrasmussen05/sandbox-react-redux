@@ -1,0 +1,64 @@
+@import '../../styles/variables';
+
+.project {
+  display: flex;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+  }
+
+  .project-image {
+    margin-right: 20px;
+
+    @media screen and (max-width: 600px) {
+      text-align: center;
+      margin-bottom: 15px;
+      margin-right: 0;
+    }
+
+    img {
+      width: 150px;
+      height: auto;
+    }
+  }
+
+  .project-details {
+    flex: 1;
+
+    @media screen and (max-width: 600px) {
+      margin: 0 25px;
+    }
+  }
+
+  .project-details-header {
+    display: flex;
+    margin-bottom: 10px;
+
+    @media screen and (max-width: 600px) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .project-title {
+    font-size: 22px;
+    font-weight: 500;
+    margin-right: 10px;
+  }
+
+  .project-links {
+
+  }
+
+  .project-link {
+    font-weight: 500;
+    font-size: 20px;
+    color: $link-color;
+    text-decoration: underline;
+    margin-right: 10px;
+
+    &:hover {
+      color: darken($link-color, 20%);
+    }
+  }
+}

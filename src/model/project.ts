@@ -1,3 +1,7 @@
 export interface Project {
-    name: string;
+    title: string;
+    description: string;
+    image: string;
+    androidLink: string;
+    iosLink: string;
 }
