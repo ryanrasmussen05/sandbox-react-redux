@@ -4,6 +4,7 @@
   background-color: $menu-bar-color;
   color: $menu-bar-title-color;
   text-align: center;
+  flex-shrink: 0;
 
   .links-wrapper {
     img {
