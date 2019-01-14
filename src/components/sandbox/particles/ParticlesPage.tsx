@@ -14,16 +14,18 @@ interface ParticlesPageProps {
     match: match
 }
 
-class ParticlesPage extends React.Component<ParticlesPageProps> {
+interface ParticlesPageState {
+    orbs: string;
+    collisions: boolean;
+    gravity: boolean;
+}
+
+class ParticlesPage extends React.Component<ParticlesPageProps, ParticlesPageState> {
     canvasWrapper: HTMLDivElement | null = null;
     canvas: HTMLCanvasElement | null = null;
     ctx: CanvasRenderingContext2D | null = null;
 
     particles: Particle[] = [];
-
-    gravity: boolean = false;
-    collisions: boolean = true;
-    orbs: string = '30';
 
     screenWidth: number = 0;
     screenHeight: number = 0;
@@ -33,10 +35,19 @@ class ParticlesPage extends React.Component<ParticlesPageProps> {
     constructor(props: ParticlesPageProps) {
         super(props);
 
+        this.state = {
+            orbs: '30',
+            collisions: true,
+            gravity: false
+        };
+
         this.reset = this.reset.bind(this);
         this.initCanvas = this.initCanvas.bind(this);
         this.draw = this.draw.bind(this);
         this.calculateCollisions = this.calculateCollisions.bind(this);
+        this.collisionsChanged = this.collisionsChanged.bind(this);
+        this.gravityChanged = this.gravityChanged.bind(this);
+        this.orbsChanged = this.orbsChanged.bind(this);
     }
 
     render() {
@@ -46,12 +57,17 @@ class ParticlesPage extends React.Component<ParticlesPageProps> {
 
                 <div className="particles-controls">
                     <div className="particles-control-toggle">
-                        <Switch/> Gravity
+                        <Switch defaultChecked={this.state.gravity} onChange={this.gravityChanged}/> Gravity
                     </div>
                     <div className="particles-control-toggle">
-                        <Switch/> Collisions
+                        <Switch defaultChecked={this.state.collisions} onChange={this.collisionsChanged}/> Collisions
                     </div>
-                    <Select style={{ width: 100 }} defaultValue="30" className="particles-control-select">
+                    <Select
+                        style={{ width: 100 }}
+                        defaultValue={this.state.orbs}
+                        className="particles-control-select"
+                        onChange={this.orbsChanged}
+                    >
                         <Select.Option value="10">10 Orbs</Select.Option>
                         <Select.Option value="20">20 Orbs</Select.Option>
                         <Select.Option value="30">30 Orbs</Select.Option>
@@ -106,7 +122,7 @@ class ParticlesPage extends React.Component<ParticlesPageProps> {
     }
 
     initCanvas(): void {
-        for (let i = 0; i < +this.orbs; i++) {
+        for (let i = 0; i < +this.state.orbs; i++) {
             this.particles.push(new Particle(this.screenWidth, this.screenHeight));
         }
 
@@ -125,11 +141,11 @@ class ParticlesPage extends React.Component<ParticlesPageProps> {
 
             this.particles.forEach((particle) => {
                 if (this.ctx) {
-                    particle.draw(this.ctx, this.gravity);
+                    particle.draw(this.ctx, this.state.gravity);
                 }
             });
 
-            if (this.collisions) {
+            if (this.state.collisions) {
                 this.calculateCollisions();
             }
         }
@@ -184,6 +200,27 @@ class ParticlesPage extends React.Component<ParticlesPageProps> {
                 }
             }
         });
+    }
+
+    collisionsChanged(on: boolean): void {
+        this.setState({
+            ...this.state,
+            collisions: on
+        });
+    }
+
+    gravityChanged(on: boolean): void {
+        this.setState({
+            ...this.state,
+            gravity: on
+        });
+    }
+
+    orbsChanged(numOrbs: string): void {
+        this.setState({
+            ...this.state,
+            orbs: numOrbs
+        }, this.reset);
     }
 }
 
