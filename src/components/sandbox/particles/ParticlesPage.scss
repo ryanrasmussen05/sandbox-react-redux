@@ -1,0 +1,44 @@
+@import '../../../styles/variables';
+
+.particles-page {
+  flex: 1 0 100%;
+  display: flex;
+  flex-direction: column;
+
+  .particles-controls {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    background-color: $home-page-banner-color;
+    color: $home-page-banner-text-color;
+  }
+
+  .particles-control-toggle {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    margin: 10px 15px;
+
+    .ant-switch {
+      margin-right: 5px;
+    }
+
+    .ant-switch:not(.ant-switch-checked) {
+      background-color: #9a9a9a;
+    }
+  }
+
+  .particles-control-select {
+    margin-left: 20px;
+  }
+
+  .particles-canvas-wrapper {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .particles-canvas {
+    flex: 1 1 auto;
+  }
+}
