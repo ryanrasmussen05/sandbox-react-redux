@@ -90,7 +90,7 @@ class PhysicsIntroPage extends React.Component<PhysicsIntroPageProps> {
                         vy: Math.random() * 0.01 - 0.005,
                         restitution: 0.99,
                         styles: {
-                            fillStyle: '#FF0000'
+                            fillStyle: '#'+Math.floor(Math.random()*16777215).toString(16)
                         }
                     })
                 );
