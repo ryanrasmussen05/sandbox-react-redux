@@ -2,6 +2,7 @@ import Home from "./components/home/Home";
 import Resume from "./components/resume/Resume";
 import Sandbox from "./components/sandbox/Sandbox";
 import ParticlesPage from "./components/sandbox/particles/ParticlesPage";
+import FireworksPage from "./components/sandbox/fireworks/FireworksPage";
 
 export interface RouteConfig {
     path: string;
@@ -24,5 +25,9 @@ export const routes: RouteConfig[] = [
     {
         path: '/sandbox/particles',
         component: ParticlesPage
+    },
+    {
+        path: '/sandbox/fireworks',
+        component: FireworksPage
     }
 ];
