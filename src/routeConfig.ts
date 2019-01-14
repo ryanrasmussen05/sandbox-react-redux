@@ -3,6 +3,7 @@ import Resume from "./components/resume/Resume";
 import Sandbox from "./components/sandbox/Sandbox";
 import ParticlesPage from "./components/sandbox/particles/ParticlesPage";
 import FireworksPage from "./components/sandbox/fireworks/FireworksPage";
+import PhysicsIntroPage from "./components/sandbox/physicsIntro/PhysicsIntroPage";
 
 export interface RouteConfig {
     path: string;
@@ -29,5 +30,9 @@ export const routes: RouteConfig[] = [
     {
         path: '/sandbox/fireworks',
         component: FireworksPage
+    },
+    {
+        path: '/sandbox/physics',
+        component: PhysicsIntroPage
     }
 ];
