@@ -77,11 +77,6 @@ class PhysicsIntroPage extends React.Component<PhysicsIntroPageProps> {
                 cof: 0.8 // friction with boundaries
             });
 
-            window.addEventListener('resize', function () {
-                viewportBounds = Physics.aabb(0, 0, renderer.width, renderer.height);
-                edgeBounce.setAABB(viewportBounds);
-            }, true);
-
             const circles = [];
 
             for (let counter = 0; counter < 100; counter++) {
