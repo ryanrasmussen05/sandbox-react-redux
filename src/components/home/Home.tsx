@@ -10,7 +10,7 @@ import {AnyAction} from "redux";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {getProjects, isFetchingProjects} from "../../reducers/selectors";
-import {Project} from "../../model/project";
+import {Project} from "../../models/project";
 import ProjectComp from "./Project";
 import Footer from "../common/Footer";
 import {getImage} from "../common/functions";

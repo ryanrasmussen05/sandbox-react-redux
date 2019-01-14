@@ -1,7 +1,7 @@
 import {Action, AnyAction, Dispatch} from 'redux';
 import firebase from 'firebase';
 import {ThunkAction} from "redux-thunk";
-import {Project} from "../model/project";
+import {Project} from "../models/project";
 
 export const REQUESTING_PROJECTS = 'REQUESTING_PROJECTS';
 export const PROJECTS_RECEIVED = 'PROJECTS_RECEIVED';

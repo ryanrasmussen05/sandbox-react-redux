@@ -1,6 +1,6 @@
 import React from 'react';
 import './Project.scss';
-import {Project} from "../../model/project";
+import {Project} from "../../models/project";
 import {getImage} from "../common/functions";
 
 

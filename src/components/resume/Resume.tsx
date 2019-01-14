@@ -10,7 +10,7 @@ import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
 import {fetchResume} from "../../actions/resumeActions";
 import {connect} from "react-redux";
-import {EducationItem, EmploymentItem, Resume} from "../../model/resume";
+import {EducationItem, EmploymentItem, Resume} from "../../models/resume";
 import Employment from "./Employment";
 import Education from "./Education";
 

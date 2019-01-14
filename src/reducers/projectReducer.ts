@@ -1,4 +1,4 @@
-import { Project } from '../model/project';
+import { Project } from '../models/project';
 import {ProjectActions, PROJECTS_ERROR, PROJECTS_RECEIVED, REQUESTING_PROJECTS} from '../actions/projectActions';
 
 export interface ProjectState {

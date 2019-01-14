@@ -1,4 +1,4 @@
-import {Resume} from "../model/resume";
+import {Resume} from "../models/resume";
 import {REQUESTING_RESUME, RESUME_ERROR, RESUME_RECEIVED, ResumeActions} from "../actions/resumeActions";
 
 export interface ResumeState {

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Education.scss';
 import {getImage} from "../common/functions";
-import {EducationItem} from "../../model/resume";
+import {EducationItem} from "../../models/resume";
 
 interface EducationProps {
     degree: EducationItem

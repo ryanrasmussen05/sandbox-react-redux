@@ -1,6 +1,6 @@
 import React from 'react';
 import './Employment.scss';
-import {EmploymentItem} from "../../model/resume";
+import {EmploymentItem} from "../../models/resume";
 import {getImage} from "../common/functions";
 
 
