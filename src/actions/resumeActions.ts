@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import * as firebase from 'firebase/app';
 import { Action, AnyAction, Dispatch } from 'redux';
 import { ThunkAction } from "redux-thunk";
 import { Resume } from "../models/resume";
