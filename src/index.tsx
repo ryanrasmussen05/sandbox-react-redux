@@ -1,5 +1,5 @@
-import React from 'react';
 import 'react-app-polyfill/ie11';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './components/App';
