@@ -8,6 +8,7 @@ import ParticlesTwoPage from "./components/sandbox/particlesTwo/ParticlesTwoPage
 import SolarSystemPage from "./components/sandbox/solarSystem/SolarSystemPage";
 import BridgePage from "./components/sandbox/bridge/BridgePage";
 import CarSimPage from "./components/sandbox/carSim/CarSimPage";
+import MontyHallPage from "./components/sandbox/montyHall/MontyHallPage";
 
 export interface RouteConfig {
     path: string;
@@ -54,5 +55,9 @@ export const routes: RouteConfig[] = [
     {
         path: '/sandbox/carSim',
         component: CarSimPage
+    },
+    {
+        path: '/sandbox/montyHall',
+        component: MontyHallPage
     }
 ];
