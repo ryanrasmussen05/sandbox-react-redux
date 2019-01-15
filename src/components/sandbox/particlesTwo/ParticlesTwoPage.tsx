@@ -1,6 +1,6 @@
 import React from 'react';
+import { match } from 'react-router';
 import Header from '../../common/Header';
-import {match} from 'react-router';
 import './ParticlesTwoPage.scss';
 
 let Physics: any = require('physicsjs/dist/physicsjs-full.js');
@@ -58,14 +58,14 @@ class ParticlesTwoPage extends React.Component<ParticlesTwoPageProps> {
             const height = this.canvasWrapper.offsetHeight;
             let viewportBounds = Physics.aabb(0, 0, width, height);
 
-            component.world = Physics({ sleepDisabled: true });
+            component.world = Physics({sleepDisabled: true});
 
             const renderer: any = Physics.renderer('canvas', {
                 el: 'physics'
             });
             component.world.add(renderer);
 
-            component.world.on('step', function() {
+            component.world.on('step', function () {
                 component.world.render();
             });
 
@@ -89,7 +89,7 @@ class ParticlesTwoPage extends React.Component<ParticlesTwoPageProps> {
                         restitution: 1.0,
                         cof: 0.0,
                         styles: {
-                            fillStyle: '#'+Math.floor(Math.random()*16777215).toString(16)
+                            fillStyle: '#' + Math.floor(Math.random() * 16777215).toString(16)
                         }
                     })
                 );
@@ -104,8 +104,8 @@ class ParticlesTwoPage extends React.Component<ParticlesTwoPageProps> {
                 edgeBounce
             ]);
 
-            Physics.util.ticker.on(function(time: any) {
-                component.world.step( time );
+            Physics.util.ticker.on(function (time: any) {
+                component.world.step(time);
             });
 
             Physics.util.ticker.start();

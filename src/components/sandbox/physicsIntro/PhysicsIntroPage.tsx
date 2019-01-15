@@ -1,6 +1,6 @@
 import React from 'react';
+import { match } from 'react-router';
 import Header from '../../common/Header';
-import {match} from 'react-router';
 import './PhysicsIntroPage.scss';
 
 let Physics: any = require('physicsjs/dist/physicsjs-full.js');
@@ -58,18 +58,18 @@ class PhysicsIntroPage extends React.Component<PhysicsIntroPageProps> {
             const height = this.canvasWrapper.offsetHeight;
             let viewportBounds = Physics.aabb(0, 0, width, height);
 
-            component.world = Physics({ sleepDisabled: true });
+            component.world = Physics({sleepDisabled: true});
 
             const renderer: any = Physics.renderer('canvas', {
                 el: 'physics'
             });
             component.world.add(renderer);
 
-            component.world.on('step', function() {
+            component.world.on('step', function () {
                 component.world.render();
             });
 
-            component.world.add(Physics.behavior('interactive', { el: renderer.container }));
+            component.world.add(Physics.behavior('interactive', {el: renderer.container}));
 
             const edgeBounce = Physics.behavior('edge-collision-detection', {
                 aabb: viewportBounds,
@@ -90,7 +90,7 @@ class PhysicsIntroPage extends React.Component<PhysicsIntroPageProps> {
                         vy: Math.random() * 0.01 - 0.005,
                         restitution: 0.99,
                         styles: {
-                            fillStyle: '#'+Math.floor(Math.random()*16777215).toString(16)
+                            fillStyle: '#' + Math.floor(Math.random() * 16777215).toString(16)
                         }
                     })
                 );
@@ -104,30 +104,30 @@ class PhysicsIntroPage extends React.Component<PhysicsIntroPageProps> {
             });
 
             component.world.on({
-                'interact:poke': function(pos: any) {
+                'interact:poke': function (pos: any) {
                     component.world.wakeUpAll();
                     attractor.position(pos);
-                    component.world.add( attractor );
+                    component.world.add(attractor);
                 },
-                'interact:move': function(pos: any) {
+                'interact:move': function (pos: any) {
                     attractor.position(pos);
                 },
-                'interact:release': function() {
+                'interact:release': function () {
                     component.world.wakeUpAll();
-                    component.world.remove( attractor );
+                    component.world.remove(attractor);
                 }
             });
 
             component.world.add([
-                Physics.behavior('newtonian', { strength: 0.01 }),
+                Physics.behavior('newtonian', {strength: 0.01}),
                 Physics.behavior('sweep-prune'),
-                Physics.behavior('body-collision-detection', { checkAll: false }),
+                Physics.behavior('body-collision-detection', {checkAll: false}),
                 Physics.behavior('body-impulse-response'),
                 edgeBounce
             ]);
 
-            Physics.util.ticker.on(function(time: any) {
-                component.world.step( time );
+            Physics.util.ticker.on(function (time: any) {
+                component.world.step(time);
             });
 
             Physics.util.ticker.start();

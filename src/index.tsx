@@ -1,12 +1,12 @@
-import 'react-app-polyfill/ie11';
-import './styles/index.scss';
-import './firebaseConfig';
 import React from 'react';
+import 'react-app-polyfill/ie11';
 import ReactDOM from 'react-dom';
-import App from './components/App';
-import * as serviceWorker from './serviceWorker';
-import configureStore from './configureStore';
 import { Provider } from 'react-redux';
+import App from './components/App';
+import configureStore from './configureStore';
+import './firebaseConfig';
+import * as serviceWorker from './serviceWorker';
+import './styles/index.scss';
 
 const store = configureStore();
 

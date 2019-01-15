@@ -1,8 +1,8 @@
 import React from 'react';
+import { Link } from "react-router-dom";
+import { getImage } from "../common/functions";
+import { SandboxLink, SandboxSection } from "./sandboxConfig";
 import './SandboxGroup.scss';
-import {getImage} from "../common/functions";
-import {SandboxLink, SandboxSection} from "./sandboxConfig";
-import {Link} from "react-router-dom";
 
 interface SandboxGroupProps {
     section: SandboxSection

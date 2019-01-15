@@ -1,9 +1,9 @@
 import React from 'react';
+import { match } from 'react-router';
 import Header from '../../common/Header';
-import {match} from 'react-router';
+import { Firework } from "./firework";
 import './FireworksPage.scss';
-import {Firework} from "./firework";
-import {Particle} from "./particle";
+import { Particle } from "./particle";
 
 interface FireworksPageProps {
     match: match

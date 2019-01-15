@@ -1,6 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import {RouteConfig, routes} from "../routeConfig";
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import { RouteConfig, routes } from "../routeConfig";
 
 class App extends React.Component {
     render() {

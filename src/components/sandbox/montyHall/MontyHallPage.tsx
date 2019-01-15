@@ -1,9 +1,9 @@
+import { Button } from "antd";
 import React from 'react';
+import { match } from 'react-router';
+import { getImage } from "../../common/functions";
 import Header from '../../common/Header';
-import {match} from 'react-router';
 import './MontyHallPage.scss';
-import {Button} from "antd";
-import {getImage} from "../../common/functions";
 
 interface MontyHallPageProps {
     match: match
@@ -60,8 +60,12 @@ class MontyHallPage extends React.Component<MontyHallPageProps, MontyHallPageSta
                 <Header currentPath={this.props.match.url}/>
 
                 <div className="monty-hall-buttons">
-                    <Button htmlType="button" type="primary" onClick={() => this.initializeTests(false)}>Run 'Stick' Test</Button>
-                    <Button htmlType="button" type="primary" onClick={() => this.initializeTests(true)}>Run 'Switch' Test</Button>
+                    <Button htmlType="button" type="primary" onClick={() => this.initializeTests(false)}>
+                        Run 'Stick' Test
+                    </Button>
+                    <Button htmlType="button" type="primary" onClick={() => this.initializeTests(true)}>
+                        Run 'Switch' Test
+                    </Button>
                     <Button htmlType="button" onClick={() => this.reset()}>Reset</Button>
                 </div>
 

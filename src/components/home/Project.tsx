@@ -1,8 +1,7 @@
 import React from 'react';
+import { Project } from "../../models/project";
+import { getImage } from "../common/functions";
 import './Project.scss';
-import {Project} from "../../models/project";
-import {getImage} from "../common/functions";
-
 
 interface ProjectProps {
     project: Project;

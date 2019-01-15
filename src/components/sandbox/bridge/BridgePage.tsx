@@ -1,6 +1,6 @@
 import React from 'react';
+import { match } from 'react-router';
 import Header from '../../common/Header';
-import {match} from 'react-router';
 import './BridgePage.scss';
 
 let Physics: any = require('physicsjs/dist/physicsjs-full.js');
@@ -70,14 +70,14 @@ class BridgePage extends React.Component<BridgePageProps> {
                 lineWidth: 3
             };
 
-            component.world = Physics({ sleepDisabled: true });
+            component.world = Physics({sleepDisabled: true});
 
             const renderer: any = Physics.renderer('canvas', {
                 el: 'physics'
             });
             component.world.add(renderer);
 
-            component.world.on('step', function() {
+            component.world.on('step', function () {
                 component.world.render();
             });
 
@@ -146,16 +146,16 @@ class BridgePage extends React.Component<BridgePageProps> {
                 }
             }
 
-            component.world.on('render', function(data: any) {
+            component.world.on('render', function (data: any) {
                 const renderer = data.renderer;
 
                 const constraints = rigidConstraints.getConstraints().distanceConstraints;
                 const scratch = Physics.scratchpad();
                 const v = scratch.vector();
 
-                for (let i = 0; i < constraints.length; i++ ) {
+                for (let i = 0; i < constraints.length; i++) {
                     const constraint = constraints[i];
-                    const length = v.clone(constraint.bodyB.state.pos).vsub(constraint.bodyA.state.pos ).norm();
+                    const length = v.clone(constraint.bodyB.state.pos).vsub(constraint.bodyA.state.pos).norm();
 
                     // break the constraint if above threshold
                     const distanceRatio = length / constraint.targetLength;
@@ -176,15 +176,15 @@ class BridgePage extends React.Component<BridgePageProps> {
             });
 
             component.world.on({
-                'interact:poke': function(pos: any) {
+                'interact:poke': function (pos: any) {
                     component.world.wakeUpAll();
                     attractor.position(pos);
                     component.world.add(attractor);
                 },
-                'interact:move': function(pos: any) {
+                'interact:move': function (pos: any) {
                     attractor.position(pos);
                 },
-                'interact:release': function() {
+                'interact:release': function () {
                     component.world.wakeUpAll();
                     component.world.remove(attractor);
                 }
@@ -195,7 +195,7 @@ class BridgePage extends React.Component<BridgePageProps> {
             component.world.add(bridgeLevelTwo);
             component.world.add(rigidConstraints);
             component.world.add([
-                Physics.behavior('interactive', { el: renderer.el }),
+                Physics.behavior('interactive', {el: renderer.el}),
                 Physics.behavior('constant-acceleration'),
                 Physics.behavior('body-impulse-response'),
                 Physics.behavior('body-collision-detection'),
@@ -204,8 +204,8 @@ class BridgePage extends React.Component<BridgePageProps> {
             ]);
 
             // subscribe to ticker to advance the simulation
-            Physics.util.ticker.on(function(time: any) {
-                component.world.step( time );
+            Physics.util.ticker.on(function (time: any) {
+                component.world.step(time);
             });
         }
     }

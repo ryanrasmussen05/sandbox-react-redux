@@ -1,6 +1,6 @@
 import React from 'react';
+import { match } from 'react-router';
 import Header from '../../common/Header';
-import {match} from 'react-router';
 import './CarSimPage.scss';
 
 let Physics: any = require('physicsjs/dist/physicsjs-full.js');
@@ -48,21 +48,21 @@ class CarSimPage extends React.Component<CarSimPageProps> {
             this.world.destroy();
         }
 
-        Physics.behavior('torque', function(parent: any) {
+        Physics.behavior('torque', function (parent: any) {
 
             const defaults = {
                 torque: 0.1
             };
 
             return {
-                init: function(options: any) {
+                init: function (options: any) {
                     const self: any = this;
                     parent.init.call(self);
                     self.options.defaults(defaults);
                     self.options(options);
                 },
 
-                behave: function(data: any) {
+                behave: function (data: any) {
                     const self: any = this;
 
                     const bodies = self.getTargets();
@@ -75,9 +75,9 @@ class CarSimPage extends React.Component<CarSimPageProps> {
             };
         });
 
-        Physics.body('beam', 'rectangle', function(parent: any) {
+        Physics.body('beam', 'rectangle', function (parent: any) {
             return {
-                buildFromPoints: function(pointA: any, pointB: any) {
+                buildFromPoints: function (pointA: any, pointB: any) {
                     const self: any = this;
 
                     const centerPoint = {
@@ -129,11 +129,11 @@ class CarSimPage extends React.Component<CarSimPageProps> {
             const renderer = Physics.renderer('canvas', {el: 'physics'});
             component.world.add(renderer);
 
-            component.world.on('step', function() {
+            component.world.on('step', function () {
                 component.world.render();
             });
 
-            Physics.util.ticker.on(function(time: any) {
+            Physics.util.ticker.on(function (time: any) {
                 component.world.step(time);
             });
 
@@ -188,7 +188,7 @@ class CarSimPage extends React.Component<CarSimPageProps> {
 
             rigidConstraints.distanceConstraint(wheels[0], wheels[1], 1);
 
-            component.world.on('render', function() {
+            component.world.on('render', function () {
                 const constraint = rigidConstraints.getConstraints().distanceConstraints[0];
                 renderer.drawLine(constraint.bodyA.state.pos, constraint.bodyB.state.pos, 'rgba(0, 0, 0, 1.0)');
             });

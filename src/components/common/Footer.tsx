@@ -1,6 +1,6 @@
 import React from "react";
 import './Footer.scss';
-import {getImage} from "./functions";
+import { getImage } from "./functions";
 
 const Footer: React.FunctionComponent = () => {
     return (

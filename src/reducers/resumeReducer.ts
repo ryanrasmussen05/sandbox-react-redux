@@ -1,5 +1,5 @@
-import {Resume} from "../models/resume";
-import {REQUESTING_RESUME, RESUME_ERROR, RESUME_RECEIVED, ResumeActions} from "../actions/resumeActions";
+import { REQUESTING_RESUME, RESUME_ERROR, RESUME_RECEIVED, ResumeActions } from "../actions/resumeActions";
+import { Resume } from "../models/resume";
 
 export interface ResumeState {
     resume: Resume | null;
@@ -14,7 +14,7 @@ const initialResumeState: ResumeState = {
 };
 
 function resumeReducer(state: ResumeState = initialResumeState, action: ResumeActions): ResumeState {
-    switch(action.type) {
+    switch (action.type) {
         case REQUESTING_RESUME:
             return {
                 ...state,

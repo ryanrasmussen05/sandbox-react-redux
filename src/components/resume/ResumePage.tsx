@@ -1,18 +1,18 @@
+import { Icon } from "antd";
 import React from 'react';
-import Header from '../common/Header';
+import { connect } from "react-redux";
 import { match } from 'react-router';
+import { AnyAction } from "redux";
+import { ThunkDispatch } from "redux-thunk";
+import { fetchResume } from "../../actions/resumeActions";
+import { EducationItem, EmploymentItem, Resume } from "../../models/resume";
+import { AppState } from "../../reducers";
+import { getResume, isFetchingResume } from "../../reducers/selectors";
 import Footer from "../common/Footer";
-import './ResumePage.scss';
-import {Icon} from "antd";
-import {AppState} from "../../reducers";
-import {getResume, isFetchingResume} from "../../reducers/selectors";
-import {ThunkDispatch} from "redux-thunk";
-import {AnyAction} from "redux";
-import {fetchResume} from "../../actions/resumeActions";
-import {connect} from "react-redux";
-import {EducationItem, EmploymentItem, Resume} from "../../models/resume";
-import Employment from "./Employment";
+import Header from '../common/Header';
 import Education from "./Education";
+import Employment from "./Employment";
+import './ResumePage.scss';
 
 interface ResumePageProps {
     match: match,
@@ -41,7 +41,7 @@ class ResumePage extends React.Component<ResumePageProps> {
                         <div className="resume-section resume-section-header">
                             Employment
                         </div>
-                        
+
                         {this.props.resume.employment.map((employment: EmploymentItem) => (
                             <div key={employment.company} className="resume-section">
                                 <Employment job={employment}/>

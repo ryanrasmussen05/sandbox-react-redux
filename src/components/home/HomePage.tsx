@@ -1,19 +1,19 @@
+import { Button, Icon } from "antd";
 import React from 'react';
-import Header from '../common/Header';
-import {match} from 'react-router';
-import './HomePage.scss';
-import {Button, Icon} from "antd";
-import {AppState} from "../../reducers";
-import {fetchProjects} from "../../actions/projectActions";
-import {ThunkDispatch} from "redux-thunk";
-import {AnyAction} from "redux";
-import {connect} from "react-redux";
-import {Link} from "react-router-dom";
-import {getProjects, isFetchingProjects} from "../../reducers/selectors";
-import {Project} from "../../models/project";
-import ProjectComp from "./Project";
+import { connect } from "react-redux";
+import { match } from 'react-router';
+import { Link } from "react-router-dom";
+import { AnyAction } from "redux";
+import { ThunkDispatch } from "redux-thunk";
+import { fetchProjects } from "../../actions/projectActions";
+import { Project } from "../../models/project";
+import { AppState } from "../../reducers";
+import { getProjects, isFetchingProjects } from "../../reducers/selectors";
 import Footer from "../common/Footer";
-import {getImage} from "../common/functions";
+import { getImage } from "../common/functions";
+import Header from '../common/Header';
+import './HomePage.scss';
+import ProjectComp from "./Project";
 
 interface HomePageProps {
     match: match;
@@ -68,17 +68,17 @@ class HomePage extends React.Component<HomePageProps> {
                     </div>
 
                     {this.props.loading &&
-                        <div className="loading-indicator">
-                            <Icon type="sync" spin/>
-                        </div>
+                    <div className="loading-indicator">
+                        <Icon type="sync" spin/>
+                    </div>
                     }
 
                     {this.props.projects &&
-                        this.props.projects.map((project: Project) => (
-                            <div key={project.title} className="project-wrapper">
-                                <ProjectComp project={project}/>
-                            </div>
-                        ))
+                    this.props.projects.map((project: Project) => (
+                        <div key={project.title} className="project-wrapper">
+                            <ProjectComp project={project}/>
+                        </div>
+                    ))
                     }
 
                 </div>
@@ -97,7 +97,7 @@ class HomePage extends React.Component<HomePageProps> {
                         </Link>
                     </div>
                 </div>
-                <Footer />
+                <Footer/>
             </div>
         );
     }

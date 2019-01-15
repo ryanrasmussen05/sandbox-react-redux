@@ -1,6 +1,6 @@
 import React from 'react';
+import { match } from 'react-router';
 import Header from '../../common/Header';
-import {match} from 'react-router';
 import './SolarSystemPage.scss';
 
 let Physics: any = require('physicsjs/dist/physicsjs-full.js');
@@ -60,14 +60,14 @@ class SolarSystemPage extends React.Component<SolarSystemPageProps> {
             const xMax = (width / 2) + (height / 2);
             const gravityStrength = 0.01;
 
-            component.world = Physics({ sleepDisabled: true });
+            component.world = Physics({sleepDisabled: true});
 
             const renderer: any = Physics.renderer('canvas', {
                 el: 'physics'
             });
             component.world.add(renderer);
 
-            component.world.on('step', function() {
+            component.world.on('step', function () {
                 component.world.render();
             });
 
@@ -121,12 +121,12 @@ class SolarSystemPage extends React.Component<SolarSystemPageProps> {
             component.world.add(circles);
 
             component.world.add([
-                Physics.behavior('newtonian', { strength: gravityStrength }),
+                Physics.behavior('newtonian', {strength: gravityStrength}),
                 Physics.behavior('sweep-prune'),
-                Physics.behavior('body-collision-detection', { checkAll: false })
+                Physics.behavior('body-collision-detection', {checkAll: false})
             ]);
 
-            component.world.on('collisions:detected', function(data: any) {
+            component.world.on('collisions:detected', function (data: any) {
                 const behavior = Physics.behavior('body-impulse-response');
 
                 // apply default impulse first
@@ -170,8 +170,8 @@ class SolarSystemPage extends React.Component<SolarSystemPageProps> {
                 }
             });
 
-            Physics.util.ticker.on(function(time: any) {
-                component.world.step( time );
+            Physics.util.ticker.on(function (time: any) {
+                component.world.step(time);
             });
 
             Physics.util.ticker.start();

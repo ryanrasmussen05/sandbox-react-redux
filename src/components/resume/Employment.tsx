@@ -1,8 +1,7 @@
 import React from 'react';
+import { EmploymentItem } from "../../models/resume";
+import { getImage } from "../common/functions";
 import './Employment.scss';
-import {EmploymentItem} from "../../models/resume";
-import {getImage} from "../common/functions";
-
 
 interface EmploymentProps {
     job: EmploymentItem;

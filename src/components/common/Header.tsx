@@ -1,8 +1,8 @@
+import { Button, Dropdown, Menu } from 'antd';
+import { MenuMode } from "antd/lib/menu";
 import React from 'react';
-import { Menu, Button, Dropdown } from 'antd';
 import { Link } from 'react-router-dom';
 import './Header.scss';
-import {MenuMode} from "antd/lib/menu";
 
 interface HeaderProps {
     currentPath: string;

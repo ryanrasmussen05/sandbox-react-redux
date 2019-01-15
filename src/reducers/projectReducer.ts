@@ -1,5 +1,5 @@
+import { ProjectActions, PROJECTS_ERROR, PROJECTS_RECEIVED, REQUESTING_PROJECTS } from '../actions/projectActions';
 import { Project } from '../models/project';
-import {ProjectActions, PROJECTS_ERROR, PROJECTS_RECEIVED, REQUESTING_PROJECTS} from '../actions/projectActions';
 
 export interface ProjectState {
     projects: Project[];
@@ -14,7 +14,7 @@ const initialProjectState: ProjectState = {
 };
 
 function projectReducer(state: ProjectState = initialProjectState, action: ProjectActions): ProjectState {
-    switch(action.type) {
+    switch (action.type) {
         case REQUESTING_PROJECTS:
             return {
                 ...state,

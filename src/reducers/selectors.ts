@@ -1,7 +1,7 @@
-import {AppState} from "./index";
-import {createSelector} from "reselect";
-import {ProjectState} from "./projectReducer";
-import {ResumeState} from "./resumeReducer";
+import { createSelector } from "reselect";
+import { AppState } from "./index";
+import { ProjectState } from "./projectReducer";
+import { ResumeState } from "./resumeReducer";
 
 const getProjectState = (state: AppState) => state.projectState;
 const getResumeState = (state: AppState) => state.resumeState;
@@ -9,7 +9,6 @@ const getResumeState = (state: AppState) => state.resumeState;
 export const isFetchingProjects = createSelector(
     [getProjectState],
     (state: ProjectState) => state.fetchingProjects
-
 );
 
 export const getProjects = createSelector(

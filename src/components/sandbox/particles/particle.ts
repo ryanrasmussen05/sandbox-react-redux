@@ -69,9 +69,9 @@ export class Particle {
     isCollided(particle: Particle): boolean {
         // check for box overlap first for performance
         if (this.x + this.radius + particle.radius > particle.x &&
-           this.x < particle.x + this.radius + particle.radius &&
-           this.y + this.radius + particle.radius > particle.y &&
-           this.y < particle.y + this.radius + particle. radius) {
+            this.x < particle.x + this.radius + particle.radius &&
+            this.y + this.radius + particle.radius > particle.y &&
+            this.y < particle.y + this.radius + particle.radius) {
 
             // particles are close, now check exact distance
             const distance = Math.sqrt(Math.pow(this.x - particle.x, 2) + Math.pow(this.y - particle.y, 2));

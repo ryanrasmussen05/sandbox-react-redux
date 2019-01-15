@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from '../common/Header';
 import { match } from 'react-router';
 import Footer from "../common/Footer";
-import './SandboxPage.scss';
-import {sandboxConfig, SandboxSection} from "./sandboxConfig";
+import Header from '../common/Header';
+import { sandboxConfig, SandboxSection } from "./sandboxConfig";
 import SandboxGroup from "./SandboxGroup";
+import './SandboxPage.scss';
 
 interface SandboxPageProps {
     match: match

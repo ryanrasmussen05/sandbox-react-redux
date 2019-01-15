@@ -1,7 +1,7 @@
-import {Action, AnyAction, Dispatch} from 'redux';
 import firebase from 'firebase';
-import {ThunkAction} from "redux-thunk";
-import {Resume} from "../models/resume";
+import { Action, AnyAction, Dispatch } from 'redux';
+import { ThunkAction } from "redux-thunk";
+import { Resume } from "../models/resume";
 
 export const REQUESTING_RESUME = 'REQUESTING_RESUME';
 export const RESUME_RECEIVED = 'RESUME_RECEIVED';

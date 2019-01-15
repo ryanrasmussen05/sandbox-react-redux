@@ -1,9 +1,9 @@
+import { Select, Switch } from "antd";
 import React from 'react';
-import Header from '../../common/Header';
 import { match } from 'react-router';
-import {Select, Switch} from "antd";
+import Header from '../../common/Header';
+import { Particle } from "./particle";
 import './ParticlesPage.scss';
-import {Particle} from "./particle";
 
 interface PhysicsNormal {
     x: number;
@@ -63,7 +63,7 @@ class ParticlesPage extends React.Component<ParticlesPageProps, ParticlesPageSta
                         <Switch defaultChecked={this.state.collisions} onChange={this.collisionsChanged}/> Collisions
                     </div>
                     <Select
-                        style={{ width: 100 }}
+                        style={{width: 100}}
                         defaultValue={this.state.orbs}
                         className="particles-control-select"
                         onChange={this.orbsChanged}
