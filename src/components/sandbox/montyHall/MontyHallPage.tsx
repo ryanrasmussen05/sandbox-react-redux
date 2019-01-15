@@ -15,10 +15,16 @@ interface MontyHallPageState {
     openDoors: number[];
     gameState: string;
     finishText?: string;
+    runningTest: boolean;
+    testOutputs: string[];
+    winners: number;
+    losers: number;
 }
 
 class MontyHallPage extends React.Component<MontyHallPageProps, MontyHallPageState> {
     doors: number[] = [1, 2, 3];
+    numberTests: number = 100;
+    testSpeed: number = 1;
 
     constructor(props: MontyHallPageProps) {
         super(props);
@@ -28,7 +34,11 @@ class MontyHallPage extends React.Component<MontyHallPageProps, MontyHallPageSta
             gameState: 'initial',
             openDoors: [],
             selectedDoor: undefined,
-            finishText: undefined
+            finishText: undefined,
+            runningTest: false,
+            testOutputs: [],
+            winners: 0,
+            losers: 0
         };
 
         this.getRandomWinner = this.getRandomWinner.bind(this);
@@ -40,6 +50,8 @@ class MontyHallPage extends React.Component<MontyHallPageProps, MontyHallPageSta
         this.switchDoor = this.switchDoor.bind(this);
         this.finishGame = this.finishGame.bind(this);
         this.reset = this.reset.bind(this);
+        this.initializeTests = this.initializeTests.bind(this);
+        this.runTest = this.runTest.bind(this);
     }
 
     render() {
@@ -48,8 +60,8 @@ class MontyHallPage extends React.Component<MontyHallPageProps, MontyHallPageSta
                 <Header currentPath={this.props.match.url}/>
 
                 <div className="monty-hall-buttons">
-                    <Button htmlType="button" type="primary">Run 'Stick' Test</Button>
-                    <Button htmlType="button" type="primary">Run 'Switch' Test</Button>
+                    <Button htmlType="button" type="primary" onClick={() => this.initializeTests(false)}>Run 'Stick' Test</Button>
+                    <Button htmlType="button" type="primary" onClick={() => this.initializeTests(true)}>Run 'Switch' Test</Button>
                     <Button htmlType="button" onClick={() => this.reset()}>Reset</Button>
                 </div>
 
@@ -100,6 +112,17 @@ class MontyHallPage extends React.Component<MontyHallPageProps, MontyHallPageSta
                 <div className="game-action">{this.state.finishText}</div>
                 }
 
+                {this.state.gameState === 'testCompleted' &&
+                <div className="game-action">{'Won: ' + this.state.winners + '    Lost: ' + this.state.losers}</div>
+                }
+
+                <div className="text-container results-container">
+                    {this.state.testOutputs.map((output: string, index: number) => (
+                        <span key={index} className={'test-output ' + output}>
+                            {output === 'win' ? 'Win' : 'Lose'}
+                        </span>
+                    ))}
+                </div>
             </div>
         );
     }
@@ -196,13 +219,69 @@ class MontyHallPage extends React.Component<MontyHallPageProps, MontyHallPageSta
     }
 
     reset(): void {
-        this.setState({
-            winningDoor: this.getRandomWinner(),
-            gameState: 'initial',
-            openDoors: [],
-            selectedDoor: undefined,
-            finishText: undefined
-        });
+        if (!this.state.runningTest) {
+            this.setState({
+                winningDoor: this.getRandomWinner(),
+                gameState: 'initial',
+                openDoors: [],
+                selectedDoor: undefined,
+                finishText: undefined,
+                runningTest: false,
+                testOutputs: [],
+                winners: 0,
+                losers: 0
+            });
+        }
+    }
+
+    initializeTests(shouldSwitch: boolean): void {
+        if (!this.state.runningTest) {
+            this.setState({
+                ...this.state,
+                testOutputs: [],
+                winners: 0,
+                losers: 0
+            }, () => this.runTest(shouldSwitch, 1));
+        }
+    }
+
+    runTest(shouldSwitch: boolean, testNumber: number): void {
+        if (testNumber > this.numberTests) {
+            this.setState({
+                ...this.state,
+                runningTest: false,
+                gameState: 'testCompleted'
+            });
+        } else {
+            const randomSelection = Math.floor(Math.random() * 3) + 1;
+
+            this.setState({
+                ...this.state,
+                winningDoor: this.getRandomWinner(),
+                selectedDoor: randomSelection,
+                gameState: 'openLoser',
+                openDoors: [],
+                runningTest: true
+            });
+
+            setTimeout(() => {
+                this.openRandomLoser();
+                setTimeout(() => {
+                    this.switchDoor(shouldSwitch);
+                    setTimeout(() => {
+                        this.finishGame();
+                        const win = this.state.selectedDoor === this.state.winningDoor;
+
+                        this.setState({
+                            ...this.state,
+                            winners: win ? this.state.winners + 1 : this.state.winners,
+                            losers: win ? this.state.losers : this.state.losers + 1,
+                            testOutputs: win ? [...this.state.testOutputs, 'win'] : [...this.state.testOutputs, 'lose']
+                        }, () => this.runTest(shouldSwitch, ++testNumber));
+                    }, this.testSpeed);
+                }, this.testSpeed);
+            }, this.testSpeed);
+        }
     }
 }
 

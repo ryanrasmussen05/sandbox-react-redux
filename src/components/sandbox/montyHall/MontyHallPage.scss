@@ -74,8 +74,31 @@
     font-size: 22px;
     margin-top: 10px;
 
+    @media screen and (max-width: 500px) {
+      height: 70px;
+    }
+
     button {
       margin: 0 10px;
+    }
+  }
+
+  .results-container {
+    margin-top: 20px;
+  }
+
+  .test-output {
+    display: inline-block;
+    margin-right: 8px;
+    font-size: 18px;
+    font-weight: 500;
+
+    &.win {
+      color: #52c41a;
+    }
+
+    &.lose {
+      color: #cf1322;
     }
   }
 }
