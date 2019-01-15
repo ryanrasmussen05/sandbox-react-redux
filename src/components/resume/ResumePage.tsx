@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../common/Header';
 import { match } from 'react-router';
 import Footer from "../common/Footer";
-import './Resume.scss';
+import './ResumePage.scss';
 import {Icon} from "antd";
 import {AppState} from "../../reducers";
 import {getResume, isFetchingResume} from "../../reducers/selectors";
@@ -14,14 +14,14 @@ import {EducationItem, EmploymentItem, Resume} from "../../models/resume";
 import Employment from "./Employment";
 import Education from "./Education";
 
-interface ResumeProps {
+interface ResumePageProps {
     match: match,
     fetchResume: () => void,
     loading: boolean,
     resume: Resume | null
 }
 
-class ResumeComponent extends React.Component<ResumeProps> {
+class ResumePage extends React.Component<ResumePageProps> {
     render() {
         return (
             <div className="resume-page">
@@ -86,6 +86,6 @@ function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
     }
 }
 
-const ConnectedResumeComponent = connect(mapStateToProps, mapDispatchToProps)(ResumeComponent);
+const ConnectedResumePage = connect(mapStateToProps, mapDispatchToProps)(ResumePage);
 
-export default ConnectedResumeComponent;
+export default ConnectedResumePage;

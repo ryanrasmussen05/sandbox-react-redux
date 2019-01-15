@@ -1,5 +1,5 @@
-import Home from "./components/home/Home";
-import Resume from "./components/resume/Resume";
+import HomePage from "./components/home/HomePage";
+import ResumePage from "./components/resume/ResumePage";
 import SandboxPage from "./components/sandbox/SandboxPage";
 import ParticlesPage from "./components/sandbox/particles/ParticlesPage";
 import FireworksPage from "./components/sandbox/fireworks/FireworksPage";
@@ -18,11 +18,11 @@ export interface RouteConfig {
 export const routes: RouteConfig[] = [
     {
         path: '/',
-        component: Home
+        component: HomePage
     },
     {
         path: '/resume',
-        component: Resume
+        component: ResumePage
     },
     {
         path: '/sandbox',

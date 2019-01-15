@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../common/Header';
 import {match} from 'react-router';
-import './Home.scss';
+import './HomePage.scss';
 import {Button, Icon} from "antd";
 import {AppState} from "../../reducers";
 import {fetchProjects} from "../../actions/projectActions";
@@ -15,14 +15,14 @@ import ProjectComp from "./Project";
 import Footer from "../common/Footer";
 import {getImage} from "../common/functions";
 
-interface HomeProps {
+interface HomePageProps {
     match: match;
     fetchProjects: () => void;
     loading: boolean;
     projects: Project[];
 }
 
-class Home extends React.Component<HomeProps> {
+class HomePage extends React.Component<HomePageProps> {
     render() {
         return (
             <div className="home-page">
@@ -122,6 +122,6 @@ function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
     }
 }
 
-const ConnectedHome = connect(mapStateToProps, mapDispatchToProps)(Home);
+const ConnectedHomePage = connect(mapStateToProps, mapDispatchToProps)(HomePage);
 
-export default ConnectedHome;
+export default ConnectedHomePage;
