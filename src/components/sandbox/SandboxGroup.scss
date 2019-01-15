@@ -1,0 +1,67 @@
+@import '../../styles/variables';
+
+.sandbox-group {
+  display: flex;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 4px 4px 22px -6px rgba(0,0,0,0.75);
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+  }
+
+  .sandbox-group-image {
+    @media screen and (max-width: 500px) {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    img {
+      width: 150px;
+
+      @media screen and (max-width: 500px) {
+        width: 100px;
+      }
+    }
+  }
+
+  .sandbox-group-details {
+    flex: 1 1 auto;
+    margin-left: 30px;
+
+    @media screen and (max-width: 500px) {
+      margin-left: 0;
+    }
+  }
+
+  .sandbox-group-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+
+    @media screen and (max-width: 500px) {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  }
+
+  .sandbox-group-links {
+    list-style-type: none;
+    padding-left: 20px;
+  }
+
+  .sandbox-group-link {
+    margin-bottom: 5px;
+  }
+
+  .sandbox-group-link a {
+    font-weight: 500;
+    font-size: 20px;
+    color: $link-color;
+    text-decoration: underline;
+
+    &:hover {
+      color: darken($link-color, 20%);
+    }
+  }
+}

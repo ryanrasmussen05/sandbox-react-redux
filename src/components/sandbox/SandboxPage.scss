@@ -1,0 +1,31 @@
+@import '../../styles/variables';
+
+.sandbox-page {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+
+  .page-content {
+    flex: 1 0 auto;
+    margin-bottom: 50px;
+  }
+
+  .page-title {
+    font-size: 30px;
+    text-align: center;
+    font-weight: 700;
+    margin-top: 20px;
+  }
+
+  .sandbox-section {
+    max-width: 800px;
+    margin: 30px auto;
+    padding-left: 25px;
+    padding-right: 25px;
+
+    @media screen and (max-width: 500px) {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+}

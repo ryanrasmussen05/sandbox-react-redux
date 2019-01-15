@@ -1,6 +1,6 @@
 import Home from "./components/home/Home";
 import Resume from "./components/resume/Resume";
-import Sandbox from "./components/sandbox/Sandbox";
+import SandboxPage from "./components/sandbox/SandboxPage";
 import ParticlesPage from "./components/sandbox/particles/ParticlesPage";
 import FireworksPage from "./components/sandbox/fireworks/FireworksPage";
 import PhysicsIntroPage from "./components/sandbox/physicsIntro/PhysicsIntroPage";
@@ -26,7 +26,7 @@ export const routes: RouteConfig[] = [
     },
     {
         path: '/sandbox',
-        component: Sandbox
+        component: SandboxPage
     },
     {
         path: '/sandbox/particles',
