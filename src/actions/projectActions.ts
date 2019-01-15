@@ -1,7 +1,8 @@
 import * as firebase from 'firebase/app';
 import { Action, AnyAction, Dispatch } from 'redux';
-import { ThunkAction } from "redux-thunk";
+import { ThunkAction, ThunkDispatch } from "redux-thunk";
 import { Project } from "../models/project";
+import { AppState } from "../reducers";
 
 export const REQUESTING_PROJECTS = 'REQUESTING_PROJECTS';
 export const PROJECTS_RECEIVED = 'PROJECTS_RECEIVED';
@@ -46,7 +47,21 @@ export function projectsError(error: string): ActionProjectsError {
     }
 }
 
-export function fetchProjects(): ThunkAction<Promise<void>, any, any, AnyAction> {
+export function fetchProjectsIfNeeded(): ThunkAction<Promise<void>, any, any, AnyAction> {
+    return (dispatch: ThunkDispatch<any, any, AnyAction>, getState: () => AppState) => {
+        if (shouldFetchProjects(getState())) {
+            return dispatch(fetchProjects());
+        } else {
+            return Promise.resolve();
+        }
+    }
+}
+
+function shouldFetchProjects(state: AppState): boolean {
+    return !state.projectState.projects || state.projectState.projects.length === 0;
+}
+
+function fetchProjects(): ThunkAction<Promise<void>, any, any, AnyAction> {
     return (dispatch: Dispatch) => {
         dispatch(requestingProjects());
 
@@ -61,4 +76,3 @@ export function fetchProjects(): ThunkAction<Promise<void>, any, any, AnyAction>
         );
     };
 }
-

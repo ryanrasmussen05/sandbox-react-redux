@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { match } from 'react-router';
 import { AnyAction } from "redux";
 import { ThunkDispatch } from "redux-thunk";
-import { fetchResume } from "../../actions/resumeActions";
+import { fetchResumeIfNeeded } from "../../actions/resumeActions";
 import { EducationItem, EmploymentItem, Resume } from "../../models/resume";
 import { AppState } from "../../reducers";
 import { getResume, isFetchingResume } from "../../reducers/selectors";
@@ -81,7 +81,7 @@ function mapStateToProps(state: AppState) {
 function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
     return {
         fetchResume: () => {
-            dispatch(fetchResume())
+            dispatch(fetchResumeIfNeeded())
         }
     }
 }

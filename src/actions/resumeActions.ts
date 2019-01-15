@@ -1,7 +1,8 @@
 import * as firebase from 'firebase/app';
 import { Action, AnyAction, Dispatch } from 'redux';
-import { ThunkAction } from "redux-thunk";
+import { ThunkAction, ThunkDispatch } from "redux-thunk";
 import { Resume } from "../models/resume";
+import { AppState } from "../reducers";
 
 export const REQUESTING_RESUME = 'REQUESTING_RESUME';
 export const RESUME_RECEIVED = 'RESUME_RECEIVED';
@@ -46,7 +47,21 @@ export function resumeError(error: string): ActionResumeError {
     }
 }
 
-export function fetchResume(): ThunkAction<Promise<void>, any, any, AnyAction> {
+export function fetchResumeIfNeeded(): ThunkAction<Promise<void>, any, any, AnyAction> {
+    return (dispatch: ThunkDispatch<any, any, AnyAction>, getState: () => AppState) => {
+        if (shouldFetchResume(getState())) {
+            return dispatch(fetchResume());
+        } else {
+            return Promise.resolve();
+        }
+    }
+}
+
+function shouldFetchResume(state: AppState): boolean {
+    return !state.resumeState.resume;
+}
+
+function fetchResume(): ThunkAction<Promise<void>, any, any, AnyAction> {
     return (dispatch: Dispatch) => {
         dispatch(requestingResume());
 

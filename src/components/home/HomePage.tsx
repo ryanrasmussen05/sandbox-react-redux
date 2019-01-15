@@ -5,7 +5,7 @@ import { match } from 'react-router';
 import { Link } from "react-router-dom";
 import { AnyAction } from "redux";
 import { ThunkDispatch } from "redux-thunk";
-import { fetchProjects } from "../../actions/projectActions";
+import { fetchProjectsIfNeeded } from "../../actions/projectActions";
 import { Project } from "../../models/project";
 import { AppState } from "../../reducers";
 import { getProjects, isFetchingProjects } from "../../reducers/selectors";
@@ -117,7 +117,7 @@ function mapStateToProps(state: AppState) {
 function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
     return {
         fetchProjects: () => {
-            dispatch(fetchProjects())
+            dispatch(fetchProjectsIfNeeded())
         }
     }
 }
