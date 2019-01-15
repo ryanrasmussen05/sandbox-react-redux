@@ -20,12 +20,24 @@
   }
 
   .door {
-    width: 100px;
-    height: 150px;
+    width: 125px;
+    height: 200px;
     margin: 10px 20px;
     position: relative;
     text-align: center;
     cursor: pointer;
+
+    @media screen and (max-width: 500px) {
+      width: 75px;
+      height: 125px;
+      margin: 10px;
+    }
+
+    @media screen and (max-width: 300px) {
+      width: 60px;
+      height: 100px;
+      margin: 8px;
+    }
 
     &.selected {
       box-shadow: orange 0 0 11px 5px;
