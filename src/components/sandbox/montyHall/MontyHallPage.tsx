@@ -119,7 +119,7 @@ class MontyHallPage extends React.Component<MontyHallPageProps, MontyHallPageSta
                 <div className="text-container results-container">
                     {this.state.testOutputs.map((output: string, index: number) => (
                         <span key={index} className={'test-output ' + output}>
-                            {output === 'win' ? 'Win' : 'Lose'}
+                            {output === 'win' ? 'WIN' : 'LOSE'}
                         </span>
                     ))}
                 </div>
